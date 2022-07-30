@@ -4,8 +4,9 @@ from . import views
 app_name="question1"
 urlpatterns = [
     path('',views.index,name='index'),
-    # path('<int:question_id>',views.detail,name='detail'),
-    # path('<int:question_id>/results',views.results,name='results'),
-    # path('<int:question_id>/vote',views.vote,name='vote')
+
+    path('api/create-dummy-vehicles/<int:record_num>',views.createDummyVehicles,name='create_dummy_vehicles'),
+    path('api/create-dummy-navigation-records/<int:record_num>',views.createDummyNavigationRecords,name='create_dummy_navigation_records'),
+
 
 ]

@@ -1,16 +1,15 @@
-The welcome page for question1.
-<br />
-<strong>Question 1</strong>
-<br />
-NavigationRecord id PK vehicle FK datetime DateTimeField latitude FloatField
-longitude FloatField Vehicle id PK plate CharField Using the classes above, we
-want you to create a function that returns the list of last points per vehicle
-that have sent navigation data in the last 48 hours. In this function, please
-implement the necessary queries using Django ORM Framework. This function will
-return the list that consists of last point objects like the example below. Note
-that, because the NavigationRecord model takes too many queries, every query to
-this model is very costly in terms of performance. You must use Python as a
-programming language, Django as a web framework and you can use any database
-management system. We also want you to suggest a different method to get this
-data in a more efficient way. For example, you can suggest a tool, architecture
-or model structure change
+<div>
+  <div style="max-width: 40%; float: left; margin: 30px">
+    <strong> There are {{vehicles|length}} vehicles in db.<br /></strong>
+    {%for v in vehicles%} {{v.id}} - {{v}}<br />
+    {%endfor%}
+  </div>
+
+  <div style="max-width: 40%; float: left; margin: 30px">
+    <strong
+      >There are {{navigationRecords|length}} vehicles in db.<br
+    /></strong>
+    {%for r in navigationRecords %} {{r}}<br />
+    {%endfor%}
+  </div>
+</div>
