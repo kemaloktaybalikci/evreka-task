@@ -1,11 +1,7 @@
-from this import s
-from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializer import VehicleSerializer,NavigationRecordsSerializer
-from django.core.serializers import serialize
-from django.shortcuts import render
 from .utils.fakeData import FakeDataGenerator
 from django.db import transaction
 from .models import NavigationRecord, Vehicle

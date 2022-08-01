@@ -3,11 +3,8 @@ from faker.providers import automotive,date_time,geo
 from ..models import  Vehicle
 
 
-# create some fake data
 fake=Faker()
 fake.add_provider({automotive,date_time,geo})
-
-# function to create a dataframe with fake values for our workers
 class FakeDataGenerator():
     def make_navigation_records(num):
         fake_navigation_records = [{'x':x,

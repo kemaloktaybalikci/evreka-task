@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'question1.apps.Question1Config',
+    'question2.apps.Question2Config',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
