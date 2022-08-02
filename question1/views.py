@@ -35,7 +35,7 @@ class VehicleNavigationRecordsView(APIView):
             endDateTime =  datetime.now()
             startDateTime = endDateTime - timedelta(hours=hour_before)
             ###############    WARNING! - This is a walkaround solution
-            ##########    Bug:  Navigations records are filtered by 'datetime'. There is a possibility that some records can be at the same 'datetime' value. 
+            ##########    Bug:  Navigations records are filtered by 'datetime'. There is a possibility that some records can have same 'datetime' value. 
             #######       Solution: Find a way to filter records by 'plate' and 'datetime' as pair. 
             vehicle= Vehicle.objects.filter(navigationrecord__datetime__range=[startDateTime,endDateTime]).values('plate').annotate(
                 last_datetime=Max('navigationrecord__datetime')).values('last_datetime')
