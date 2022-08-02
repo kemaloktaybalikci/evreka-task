@@ -12,8 +12,8 @@ class Operation(models.Model):
     name=models.CharField(max_length=200)
 
 class Collection(models.Model):
-    bin = models.ForeignKey(Bin,null=True,on_delete=models.SET_NULL)
-    operation = models.ForeignKey(Operation,null=True,on_delete=models.SET_NULL)
+    bin = models.ForeignKey(Bin,null=True,on_delete=models.SET_NULL,related_name="bins")
+    operation = models.ForeignKey(Operation,null=True,on_delete=models.SET_NULL,related_name="operations")
     collection_frequency=models.IntegerField()
     last_collection=models.DateTimeField()
 

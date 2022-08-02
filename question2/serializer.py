@@ -1,4 +1,3 @@
-from dataclasses import fields
 from rest_framework import serializers
 from .models import Bin, Operation,Collection
 
@@ -17,7 +16,13 @@ class OperationSerializer(serializers.ModelSerializer):
 
 
 class CollectionSerializer(serializers.ModelSerializer):
-    last_collection = serializers.DateTimeField(format="%d.%m.%Y %H:%M:%S")
+    collection_frequency = serializers.IntegerField(read_only=True)
+    #last_collection = serializers.DateTimeField(format="%d.%m.%Y %H:%M:%S")
+    bin = BinSerializer()
+    operation = OperationSerializer()
+
+    
     class Meta:
         model = Collection
-        fields=['id','bin','operation','collection_frequency','last_collection']
+        fields=['collection_frequency','bin','operation']
+

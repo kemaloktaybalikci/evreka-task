@@ -1,6 +1,9 @@
+from datetime import datetime, timedelta
 from django.db import models
 from django.db.models.aggregates import Count
 from random import randint
+
+
 class VehicleManager(models.Manager):
     def random(self):
         count = self.aggregate(count=Count('pk'))['count']
@@ -14,13 +17,21 @@ class Vehicle(models.Model):
     def __str__(self):
         return str(self.id)
 
+    # def x(self):
+    #     hour_before=48
+    #     endDateTime =  datetime.now()
+    #     startDateTime = endDateTime - timedelta(hours=hour_before)
+
+    #     self.navigation_records.filter(datetime__range=[startDateTime, endDateTime])
+    #     pass
+
 class NavigationRecord(models.Model):
     def __str__(self):
         return str(self.id)
     datetime =models.DateTimeField()
     latitude = models.FloatField()
     longitude = models.FloatField()
-    vehicle = models.ForeignKey(Vehicle,on_delete=models.CASCADE)
+    vehicle = models.ForeignKey(Vehicle,on_delete=models.CASCADE, related_name="navigationrecord")
 
 
 
