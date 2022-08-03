@@ -39,6 +39,7 @@ class VehicleNavigationRecordsView(APIView):
             #######       Result: The exception will not raised; however, if the records are not the latest ones for related vehicles, the returned data will have 2 objects belongs to related vehicles. 
             #####         Solution: Find a way to filter 'NavigationRecord' by 'plate' and 'datetime' as pair. 
 
+
             vehicle= Vehicle.objects.filter(navigationrecord__datetime__range=[startDateTime,endDateTime]).values('plate').annotate(
                 last_datetime=Max('navigationrecord__datetime')).values('last_datetime')
             records=NavigationRecord.objects.filter(datetime__in=vehicle).annotate(
