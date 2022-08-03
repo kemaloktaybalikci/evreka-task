@@ -34,9 +34,12 @@ class VehicleNavigationRecordsView(APIView):
             hour_before=48
             endDateTime =  datetime.now()
             startDateTime = endDateTime - timedelta(hours=hour_before)
-            ###############    WARNING! - This is a walkaround solution
+            ###############    TODO! - This is a walkaround solution
             ##########    Bug:  Navigations records are filtered by 'datetime'. There is a possibility that some records can have same 'datetime' value. 
-            #######       Solution: Find a way to filter records by 'plate' and 'datetime' as pair. 
+            #######       Result: The exception will not raised; however, if the records are not the latest ones for related vehicles, the returned data will have 2 objects belongs to related vehicles. 
+            #####         Solution: Find a way to filter 'NavigationRecord' by 'plate' and 'datetime' as pair. 
+
+
             vehicle= Vehicle.objects.filter(navigationrecord__datetime__range=[startDateTime,endDateTime]).values('plate').annotate(
                 last_datetime=Max('navigationrecord__datetime')).values('last_datetime')
             records=NavigationRecord.objects.filter(datetime__in=vehicle).annotate(
@@ -49,7 +52,7 @@ class VehicleNavigationRecordsView(APIView):
 class CreateDummyVehiclesView(APIView):
     def get(self, request,record_num):
         try:
-            # Record_num can be limited to prevent crash
+            # TODO Record_num should be limited to prevent crash
 
             fake_vehicles=FakeDataGenerator.make_vehicles(record_num)
             for vehicle in fake_vehicles:
@@ -63,7 +66,7 @@ class CreateDummyVehiclesView(APIView):
 class CreateDummyNavigationRecordsView(APIView):
     def get(self, request,record_num):
         try:
-            # Record_num can be limited to prevent crash
+            # TODO Record_num should be limited to prevent crash
     
             fake_navigation_records= FakeDataGenerator.make_navigation_records(record_num)
             for record in fake_navigation_records:

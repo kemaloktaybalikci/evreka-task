@@ -22,13 +22,11 @@ class NavigationRecordsSerializer(serializers.ModelSerializer):
 class LastPointSerializer(serializers.ModelSerializer):
     datetime = serializers.DateTimeField(format="%d.%m.%Y %H:%M:%S")
     vehicle_plate = serializers.CharField(read_only=True)
-    vehicle_id = serializers.IntegerField(read_only=True)
-
     latitude = serializers.CharField(read_only=True)
     longitude = serializers.CharField(read_only=True)
 
 
     class Meta:
         model = NavigationRecord
-        fields=['vehicle_id','latitude','longitude','vehicle_plate','datetime']
+        fields=['latitude','longitude','vehicle_plate','datetime']
 
